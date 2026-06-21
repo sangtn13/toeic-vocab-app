@@ -1,0 +1,302 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 42 47% 97%;
+    --foreground: 198 45% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 198 45% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 198 45% 13%;
+    --primary: 190 67% 26%;
+    --primary-foreground: 45 100% 98%;
+    --secondary: 47 75% 90%;
+    --secondary-foreground: 198 45% 16%;
+    --muted: 44 40% 93%;
+    --muted-foreground: 192 18% 40%;
+    --accent: 15 83% 62%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 42 23% 84%;
+    --input: 42 23% 84%;
+    --ring: 190 67% 26%;
+    --surface-contrast: 216 37% 14%;
+    --surface-contrast-foreground: 210 40% 98%;
+    --surface-contrast-muted-foreground: 214 25% 78%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 222 39% 8%;
+    --foreground: 210 33% 96%;
+    --card: 222 31% 12%;
+    --card-foreground: 210 33% 96%;
+    --popover: 222 31% 12%;
+    --popover-foreground: 210 33% 96%;
+    --primary: 187 69% 59%;
+    --primary-foreground: 222 47% 10%;
+    --secondary: 217 26% 18%;
+    --secondary-foreground: 210 33% 96%;
+    --muted: 218 21% 16%;
+    --muted-foreground: 215 20% 72%;
+    --accent: 28 91% 66%;
+    --accent-foreground: 222 47% 10%;
+    --destructive: 0 75% 61%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 217 20% 24%;
+    --input: 217 20% 24%;
+    --ring: 187 69% 59%;
+    --surface-contrast: 222 33% 16%;
+    --surface-contrast-foreground: 210 33% 96%;
+    --surface-contrast-muted-foreground: 215 20% 72%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen overflow-x-hidden bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(254, 215, 170, 0.48), transparent 28%),
+      radial-gradient(circle at 85% 10%, rgba(103, 232, 249, 0.26), transparent 24%),
+      radial-gradient(circle at 20% 100%, rgba(191, 219, 254, 0.22), transparent 22%),
+      linear-gradient(180deg, rgba(255, 251, 235, 0.98), rgba(245, 247, 250, 0.95));
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(circle at top left, rgba(14, 165, 233, 0.16), transparent 28%),
+      radial-gradient(circle at 85% 10%, rgba(251, 191, 36, 0.1), transparent 24%),
+      radial-gradient(circle at 20% 100%, rgba(59, 130, 246, 0.1), transparent 22%),
+      linear-gradient(180deg, rgba(2, 8, 23, 0.98), rgba(15, 23, 42, 0.95));
+  }
+
+  a {
+    @apply transition-colors;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .app-surface {
+    @apply rounded-[28px] border border-border/70 bg-card/80 text-card-foreground shadow-glow backdrop-blur;
+  }
+
+  .paper-grid {
+    background-image:
+      linear-gradient(to right, rgba(8, 47, 73, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(8, 47, 73, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .safe-dialog-height {
+    max-height: min(85vh, 720px);
+  }
+
+  .surface-contrast {
+    background-color: hsl(var(--surface-contrast));
+    color: hsl(var(--surface-contrast-foreground));
+  }
+
+  .surface-contrast-muted {
+    color: hsl(var(--surface-contrast-muted-foreground));
+  }
+
+  .surface-contrast-chip {
+    background-color: hsl(var(--surface-contrast-foreground) / 0.12);
+    color: hsl(var(--surface-contrast-foreground));
+  }
+
+  .surface-contrast-panel {
+    border-color: hsl(var(--surface-contrast-foreground) / 0.12);
+    background-color: hsl(var(--surface-contrast-foreground) / 0.06);
+    color: hsl(var(--surface-contrast-foreground) / 0.88);
+  }
+
+  .hero-preview-shell {
+    background-image:
+      radial-gradient(circle at top right, rgba(125, 211, 252, 0.28), transparent 28%),
+      radial-gradient(circle at 20% 20%, rgba(251, 191, 36, 0.18), transparent 26%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 250, 253, 0.94));
+  }
+
+  .dark .hero-preview-shell {
+    background-image:
+      radial-gradient(circle at top right, rgba(34, 211, 238, 0.12), transparent 24%),
+      radial-gradient(circle at 12% 18%, rgba(14, 165, 233, 0.1), transparent 22%),
+      linear-gradient(180deg, rgba(19, 27, 42, 0.96), rgba(11, 18, 32, 0.98));
+  }
+
+  .hero-preview-card {
+    border-color: hsl(var(--border) / 0.72);
+    background-color: hsl(var(--card) / 0.9);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+  }
+
+  .dark .hero-preview-card {
+    border-color: rgba(226, 232, 240, 0.09);
+    background-color: rgba(255, 255, 255, 0.035);
+    box-shadow: 0 20px 50px rgba(2, 8, 23, 0.28);
+  }
+
+  .hero-preview-item {
+    border-color: transparent;
+    background-color: hsl(var(--muted) / 0.8);
+  }
+
+  .dark .hero-preview-item {
+    border-color: rgba(226, 232, 240, 0.08);
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+
+  .hero-preview-dark-card {
+    border-color: rgba(226, 232, 240, 0.09);
+    box-shadow: 0 20px 50px rgba(2, 8, 23, 0.24);
+  }
+
+  .hero-preview-dark-item {
+    border-color: rgba(226, 232, 240, 0.12);
+    background-color: rgba(248, 250, 252, 0.07);
+    color: hsl(var(--surface-contrast-foreground) / 0.9);
+  }
+
+  .hero-preview-metric {
+    border-color: hsl(var(--border) / 0.72);
+    background-color: hsl(var(--card) / 0.85);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  }
+
+  .dark .hero-preview-metric {
+    border-color: rgba(226, 232, 240, 0.08);
+    background-color: rgba(255, 255, 255, 0.045);
+    box-shadow: 0 18px 40px rgba(2, 8, 23, 0.24);
+  }
+
+  .footer-surface {
+    background-color: hsl(var(--surface-contrast));
+    color: hsl(var(--surface-contrast-foreground));
+  }
+
+  .footer-copy {
+    color: hsl(var(--surface-contrast-muted-foreground));
+  }
+
+  .footer-heading {
+    color: hsl(var(--surface-contrast-muted-foreground) / 0.82);
+  }
+
+  .footer-divider {
+    border-color: hsl(var(--surface-contrast-foreground) / 0.12);
+  }
+
+  .status-pill-success {
+    background-color: hsl(142 71% 45%);
+    color: hsl(var(--primary-foreground));
+  }
+
+  .status-pill-warning {
+    background-color: hsl(38 92% 50%);
+    color: hsl(var(--primary-foreground));
+  }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-thin-soft {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border) / 0.75) transparent;
+  }
+
+  .scrollbar-thin-soft::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin-soft::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin-soft::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background: hsl(var(--border) / 0.75);
+  }
+
+  .scrollbar-thin-soft::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.55);
+  }
+
+  .overflow-anchor-none {
+    overflow-anchor: none;
+  }
+
+  .scrollbar-gutter-stable {
+    scrollbar-gutter: stable;
+  }
+
+  .scrollbar-thin-quiet {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  .scrollbar-thin-quiet::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin-quiet::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin-quiet::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background: transparent;
+  }
+
+  .scrollbar-thin-quiet:hover {
+    scrollbar-color: hsl(var(--border) / 0.75) transparent;
+  }
+
+  .scrollbar-thin-quiet:hover::-webkit-scrollbar-thumb {
+    background: hsl(var(--border) / 0.75);
+  }
+
+  .scrollbar-thin-quiet:hover::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.55);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .workspace-card-transition {
+    animation: workspace-card-transition 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform, filter;
+  }
+}
+
+@keyframes workspace-card-transition {
+  from {
+    opacity: 0;
+    filter: blur(1px);
+    transform: translate3d(0, 12px, 0) scale(0.988);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
