@@ -442,13 +442,14 @@ export function WorkspacePracticeContent({
 
   const isLessonContentLoading = studyActivityLoading || isUnitMetadataLoading;
 
-  const shouldUseCompactMobileEmptyState =
+  const shouldUseCompactMobileStatusState =
     !isDesktopLayout &&
     isUnitOpen &&
     !isLessonContentLoading &&
-    bootstrapStatus !== "failed" &&
     !!resolvedUnitId &&
-    (!unitHasVocabulary || !currentItem);
+    (bootstrapStatus === "failed" || !unitHasVocabulary || !currentItem);
+  const compactMobileStatusMessage =
+    bootstrapStatus === "failed" ? copy.bootstrapIssueMessage : copy.noItemMessage;
 
   return (
     <div className="flex-1 px-4 py-4 sm:px-6 sm:py-6 lg:min-h-0 lg:overflow-y-auto lg:px-8 lg:py-7">
@@ -641,11 +642,11 @@ export function WorkspacePracticeContent({
                   </div>
                 </div>
 
-                {shouldUseCompactMobileEmptyState ? (
+                {shouldUseCompactMobileStatusState ? (
                   <Card className="overflow-hidden rounded-[30px] border-border bg-card shadow-[0_18px_40px_rgba(148,163,184,0.16)]">
                     <CardContent className="space-y-4 p-5">
                       <div className="rounded-[24px] border border-dashed border-border bg-muted/20 px-5 py-8 text-center text-sm leading-7 text-muted-foreground">
-                        {copy.noItemMessage}
+                        {compactMobileStatusMessage}
                       </div>
                       <div className="rounded-[22px] border border-border bg-card px-4 py-4 shadow-[0_10px_24px_rgba(148,163,184,0.08)]">
                         <p className="leading-6">
@@ -701,7 +702,7 @@ export function WorkspacePracticeContent({
                     ? "px-1 pb-6 pt-2 lg:col-start-2 lg:row-start-2"
                     : !isUnitOpen
                       ? "hidden"
-                      : shouldUseCompactMobileEmptyState
+                      : shouldUseCompactMobileStatusState
                         ? "hidden"
                         : "rounded-[24px] border border-border bg-card/80 px-4 py-4 shadow-[0_12px_28px_rgba(148,163,184,0.1)]"
                 )}
